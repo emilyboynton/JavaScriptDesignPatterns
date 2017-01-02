@@ -1,0 +1,30 @@
+body {
+	height: 100vh;
+	width: 100vw;
+	margin: 0;
+}
+
+div {
+	position: relative;
+	height: 80vh;
+	width: 80vw;
+	margin: auto;
+	padding: 0;	
+	transform: translateY(10vh);
+
+}
+
+h3 {
+	text-align: center;
+	padding: 1%;
+}
+
+
+img {
+	display: block;
+	max-height: 80%;
+	max-width: 80%;
+	margin: auto;
+	position: relative;
+	margin-left: calc(50vh-50%);
+}

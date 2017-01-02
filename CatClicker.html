@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<title>Cat Clicker</title>
+</head>
+<body>
+
+	<div>
+
+		<h3 id="clicks">Clicks: 0</h3>
+		<img src="assets/vampirecat.jpg" id="vampirecat">
+
+	</div>
+
+<script type="text/javascript">
+	var countText = document.getElementById('clicks');
+	var img = document.getElementById('vampirecat');
+
+	var counter = 0;
+	img.addEventListener('click', function() {
+		counter += 1;
+		countText.innerHTML = `Clicks: ${counter}`;
+	});
+
+</script>
+</body>
+
+</html>
