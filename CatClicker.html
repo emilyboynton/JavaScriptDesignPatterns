@@ -1,29 +1,46 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 	<title>Cat Clicker</title>
 </head>
+
 <body>
 
 	<div>
-
-		<h3 id="clicks">Clicks: 0</h3>
-		<img src="assets/vampirecat.jpg" id="vampirecat">
-
+		<div class="cats" id="vampirecat">
+			<h3>Vampire Cat</h3>
+			<h3 id="clicks1">Clicks: 0</h3>
+			<img src="assets/vampirecat.jpg" id="vampirecat-img">
+		</div>
+		<div class="cats" id="cowboycat">
+			<h3>Cowboy Cat</h3>
+			<h3 id="clicks2">Clicks: 0</h3>
+			<img src="assets/cowboycat.jpg" id="cowboycat-img">
+		</div>
 	</div>
 
-<script type="text/javascript">
-	var countText = document.getElementById('clicks');
-	var img = document.getElementById('vampirecat');
+	<script type="text/javascript">
+		var countText1 = document.getElementById('clicks1');
+		var img1 = document.getElementById('vampirecat-img');
+		var countText2 = document.getElementById('clicks2');
+		var img2 = document.getElementById('cowboycat-img');
 
-	var counter = 0;
-	img.addEventListener('click', function() {
-		counter += 1;
-		countText.innerHTML = `Clicks: ${counter}`;
-	});
+		var counter1 = 0;
+		img1.addEventListener('click', function() {
+			counter1 += 1;
+			countText1.innerHTML = `Clicks: ${counter1}`;
+		});
 
-</script>
+		var counter2 = 0;
+		img2.addEventListener('click', function() {
+			counter2 += 1;
+			countText2.innerHTML = `Clicks: ${counter2}`;
+		});
+
+	</script>
+
 </body>
 
 </html>
