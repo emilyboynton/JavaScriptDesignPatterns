@@ -2,42 +2,58 @@
 <html>
 
 <head>
+	<link rel="stylesheet" type="text/css" href="assets/css/normalize.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 	<title>Cat Clicker</title>
 </head>
 
 <body>
 
-	<div>
-		<div class="cats" id="vampirecat">
-			<h3>Vampire Cat</h3>
-			<h3 id="clicks1">Clicks: 0</h3>
-			<img src="assets/vampirecat.jpg" id="vampirecat-img">
+	<div id="cat-page">
+		<div class="list" id="list">
+			<ul id="cat-list"> </ul>
 		</div>
-		<div class="cats" id="cowboycat">
-			<h3>Cowboy Cat</h3>
-			<h3 id="clicks2">Clicks: 0</h3>
-			<img src="assets/cowboycat.jpg" id="cowboycat-img">
+
+		<div class="cats" id="cat-facts">
+			<h3 id="cat-name"></h3>
+			<h3 id="cat-clicks"></h3>
+			<div id="pic-layout">
+				<img id='cat-pic'>
+			</div>
 		</div>
+
 	</div>
 
 	<script type="text/javascript">
-		var countText1 = document.getElementById('clicks1');
-		var img1 = document.getElementById('vampirecat-img');
-		var countText2 = document.getElementById('clicks2');
-		var img2 = document.getElementById('cowboycat-img');
 
-		var counter1 = 0;
-		img1.addEventListener('click', function() {
-			counter1 += 1;
-			countText1.innerHTML = `Clicks: ${counter1}`;
-		});
+		var cats = [
+				['Vampire Cat', 'assets/vampirecat.jpg', 0],
+				['Cowboy Cat', 'assets/cowboycat.jpg', 0],
+				['Coffee Cat', 'assets/coffeecat.jpg', 0],
+				['Flower Cat', 'assets/flowercat.jpg', 0],
+				['iCat', 'assets/iCat.jpg', 0]
+			];
 
-		var counter2 = 0;
-		img2.addEventListener('click', function() {
-			counter2 += 1;
-			countText2.innerHTML = `Clicks: ${counter2}`;
-		});
+		for (var i = 0; i < cats.length; i++){
+			var cat = cats[i];
+
+			var item = document.createElement('li');
+			item.textContent = cat[0];
+
+			item.addEventListener('click', (function(catCopy){
+				return function(){
+
+					document.getElementById('cat-name').textContent = catCopy[0];
+					document.getElementById('cat-clicks').textContent = (catCopy[2] += 1);
+					document.getElementById('cat-pic').src = catCopy[1];
+
+				};
+
+			})(cat));
+
+			document.getElementById('cat-list').appendChild(item);
+
+		};
 
 	</script>
 
