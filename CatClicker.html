@@ -26,34 +26,104 @@
 
 	<script type="text/javascript">
 
-		var cats = [
-				['Vampire Cat', 'assets/vampirecat.jpg', 0],
-				['Cowboy Cat', 'assets/cowboycat.jpg', 0],
-				['Coffee Cat', 'assets/coffeecat.jpg', 0],
-				['Flower Cat', 'assets/flowercat.jpg', 0],
-				['iCat', 'assets/iCat.jpg', 0]
-			];
+		var model = {
+			cats : [
+				{
+					name : 'Vampire Cat', 
+					pic : 'assets/vampirecat.jpg', 
+					click : 0
+				},
+				{
+					name : 'Cowboy Cat', 
+					pic : 'assets/cowboycat.jpg', 
+					click : 0
+				},
+				{
+					name : 'Coffee Cat', 
+					pic : 'assets/coffeecat.jpg',
+					click :  0
+				},
+				{
+					name : 'Flower Cat', 
+					pic : 'assets/flowercat.jpg', 
+					click : 0
+				},
+				{ 
+					name :'iCat', 
+					pic : 'assets/iCat.jpg',
+					click : 0
+				}
+			],
 
-		for (var i = 0; i < cats.length; i++){
-			var cat = cats[i];
-
-			var item = document.createElement('li');
-			item.textContent = cat[0];
-
-			item.addEventListener('click', (function(catCopy){
-				return function(){
-
-					document.getElementById('cat-name').textContent = catCopy[0];
-					document.getElementById('cat-clicks').textContent = ("Clicks: " + (catCopy[2] += 1));
-					document.getElementById('cat-pic').src = catCopy[1];
-
-				};
-
-			})(cat));
-
-			document.getElementById('cat-list').appendChild(item);
+			currentCat : null
 
 		};
+
+		var octopus = {
+			init : function(){
+				model.currentCat = model.cats[0];
+				view.init();
+				view.renderList(model.cats);
+				if (model.currentCat != null ){
+					view.renderCatDetails();
+				}
+			},
+
+			setCurrentCat : function(data){
+				model.currentCat = data;
+			},
+
+			getCatDetails : function() {
+				return model.currentCat;
+			},
+
+			increaseCatClicks : function(){
+				model.currentCat.click += 1;
+			}
+
+		};
+
+		var view = {
+
+			init : function() {
+				this.catName = document.getElementById('cat-name');
+				this.catClicks = document.getElementById('cat-clicks');
+				this.catPic = document.getElementById('cat-pic');
+				this.catList = document.getElementById('cat-list');
+
+			},
+
+			renderList : function(data){
+				for (var i = 0; i < data.length; i++){
+					var catObject = data[i];
+
+					var item = document.createElement('li');
+					item.textContent = catObject.name;
+					
+					item.addEventListener('click', (function(catObjectCopy){
+						return function(){
+							octopus.setCurrentCat(catObjectCopy);
+							octopus.increaseCatClicks();
+							view.renderCatDetails();
+						};
+
+					})(catObject));
+
+					this.catList.appendChild(item);
+				}
+			},
+
+			renderCatDetails : function() {
+				details = octopus.getCatDetails();
+				this.catName.textContent = details.name;
+				this.catClicks.textContent = "Clicks: " + details.click;
+				this.catPic.src = details.pic;
+			}
+
+		};
+
+		octopus.init();
+
 
 	</script>
 
