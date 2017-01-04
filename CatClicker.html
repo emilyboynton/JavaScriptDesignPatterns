@@ -44,7 +44,7 @@
 				return function(){
 
 					document.getElementById('cat-name').textContent = catCopy[0];
-					document.getElementById('cat-clicks').textContent = (catCopy[2] += 1);
+					document.getElementById('cat-clicks').textContent = ("Clicks: " + (catCopy[2] += 1));
 					document.getElementById('cat-pic').src = catCopy[1];
 
 				};
