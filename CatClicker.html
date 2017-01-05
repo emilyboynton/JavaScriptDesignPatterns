@@ -10,8 +10,17 @@
 <body>
 
 	<div id="cat-page">
-		<div class="list" id="list">
+		<div class="list-admin" id="list-admin">
 			<ul id="cat-list"> </ul>
+			<button id="admin-show">Admin</button>
+			<div class="hidden" id="admin">
+				<input id="admin-name" type="text" value="">
+				<input id="admin-url" type="text" value="">
+				<input id="admin-clicks" type="text" value="">
+				<button id="admin-hide">Cancel</button>
+				<button id="admin-update">Submit</button>
+			</div>
+
 		</div>
 
 		<div class="cats" id="cat-facts">
@@ -67,6 +76,7 @@
 				if (model.currentCat != null ){
 					view.renderCatDetails();
 				}
+				view.renderAdmin();
 			},
 
 			setCurrentCat : function(data){
@@ -79,7 +89,24 @@
 
 			increaseCatClicks : function(){
 				model.currentCat.click += 1;
+			},
+
+			setCatName : function(data) {
+				model.currentCat.name = data;
+			},
+
+			setCatUrl : function(data) {
+				model.currentCat.pic = data;
+			},
+
+			setCatClicks : function(data) {
+				model.currentCat.click = data;
+			},
+
+			getCats : function() {
+				return model.cats;
 			}
+
 
 		};
 
@@ -90,10 +117,31 @@
 				this.catClicks = document.getElementById('cat-clicks');
 				this.catPic = document.getElementById('cat-pic');
 				this.catList = document.getElementById('cat-list');
+				this.adminButton = document.getElementById('admin-show');
+				this.adminArea = document.getElementById('admin');
+				this.adminCatName = document.getElementById('admin-name');
+				this.adminCatClicks = document.getElementById('admin-clicks');
+				this.adminCatUrl = document.getElementById('admin-url');
+				this.adminCancel = document.getElementById('admin-hide');
+				this.adminSubmit = document.getElementById('admin-update');
 
+
+				this.adminButton.addEventListener('click', (function(){
+					view.removeHidden();
+				}));
+
+				this.adminCancel.addEventListener('click', (function(){
+					view.addHidden();
+				}));
+
+				this.adminSubmit.addEventListener('click', (function(){
+					view.submit();
+					view.addHidden();
+				}))
 			},
 
 			renderList : function(data){
+				this.catList.innerHTML="";
 				for (var i = 0; i < data.length; i++){
 					var catObject = data[i];
 
@@ -105,6 +153,7 @@
 							octopus.setCurrentCat(catObjectCopy);
 							octopus.increaseCatClicks();
 							view.renderCatDetails();
+							view.renderAdmin();
 						};
 
 					})(catObject));
@@ -118,6 +167,30 @@
 				this.catName.textContent = details.name;
 				this.catClicks.textContent = "Clicks: " + details.click;
 				this.catPic.src = details.pic;
+			},
+
+			renderAdmin : function() {
+				details = octopus.getCatDetails();
+				this.adminCatName.value = details.name;
+				this.adminCatUrl.value = details.pic;
+				this.adminCatClicks.value = details.click;
+			},
+
+			submit : function() {
+				octopus.setCatName(view.adminCatName.value);
+				octopus.setCatUrl(view.adminCatUrl.value);
+				octopus.setCatClicks(parseInt(view.adminCatClicks.value));
+				this.renderList(octopus.getCats());
+				this.renderCatDetails();
+
+			},
+
+			addHidden : function() {
+				this.adminArea.classList.add('hidden');
+			},
+
+			removeHidden : function() {
+				this.adminArea.classList.remove('hidden');
 			}
 
 		};
