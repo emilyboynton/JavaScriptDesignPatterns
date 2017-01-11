@@ -93,13 +93,11 @@
 			for (var i = 0; i < octopus.getStudents().length; i++){
 				data = octopus.getStudents()[i];
 				octopus.setCurrentStudent(data);
-				alert(i);
 				view.renderStudent(data, i);
 			}
 		},
 
 		renderStudent : function(data, index){
-			alert(data.name);
 			row = document.getElementById(index);
 			nameData = document.createElement('td');
 			nameData.class = 'name-col';
@@ -113,16 +111,16 @@
 
 				checkbox = document.createElement('input');
 				checkbox.type = 'checkbox';
-				// checkbox.addEventListener('click', (function(e) {
-				// 	if (e.target.checked){ 
-				// 		octopus.minusMissed(data);
-				// 		alert(octopus.getCurrentStudent().name);
-				// 	} 
-				// 	else { 
-				// 		octopus.plusMissed();
-				// 	} 
+				checkbox.addEventListener('click', (function(dataCopy) {
+					//  FIX!!!
+					if (e.target.checked){ 
+						octopus.minusMissed(data);
+					} 
+					else { 
+						octopus.plusMissed();
+					} 
 
-				// }));
+				})(data));
 
 				checkData.appendChild(checkbox);
 				row.appendChild(checkData);
