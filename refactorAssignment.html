@@ -5,177 +5,182 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Udacity Attendance App</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <link rel="stylesheet" href="css/normalize.css">
-        <link rel="stylesheet" href="css/style.css">
     </head>
-    <body>
+    <body id="body">
         <h1>Udacity Attendance</h1>
 
-        <table>
-            <thead>
-                <tr>
-                    <th class="name-col">Student Name</th>
-                    <th>1</th>
-                    <th>2</th>
-                    <th>3</th>
-                    <th>4</th>
-                    <th>5</th>
-                    <th>6</th>
-                    <th>7</th>
-                    <th>8</th>
-                    <th>9</th>
-                    <th>10</th>
-                    <th>11</th>
-                    <th>12</th>
-                    <th class="missed-col">Days Missed-col</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="student">
-                    <td class="name-col">Slappy the Frog</td>
-                    <td class="attend-col"><input type="checkbox"></td>
-                    <td class="attend-col"><input type="checkbox"></td>
-                    <td class="attend-col"><input type="checkbox"></td>
-                    <td class="attend-col"><input type="checkbox"></td>
-                    <td class="attend-col"><input type="checkbox"></td>
-                    <td class="attend-col"><input type="checkbox"></td>
-                    <td class="attend-col"><input type="checkbox"></td>
-                    <td class="attend-col"><input type="checkbox"></td>
-                    <td class="attend-col"><input type="checkbox"></td>
-                    <td class="attend-col"><input type="checkbox"></td>
-                    <td class="attend-col"><input type="checkbox"></td>
-                    <td class="attend-col"><input type="checkbox"></td>
-                    <td class="missed-col">0</td>
-                </tr>
-                <tr class="student">
-                    <td class="name-col">Lilly the Lizard</td>
-                    <td class="attend-col"><input type="checkbox"></td>
-                    <td class="attend-col"><input type="checkbox"></td>
-                    <td class="attend-col"><input type="checkbox"></td>
-                    <td class="attend-col"><input type="checkbox"></td>
-                    <td class="attend-col"><input type="checkbox"></td>
-                    <td class="attend-col"><input type="checkbox"></td>
-                    <td class="attend-col"><input type="checkbox"></td>
-                    <td class="attend-col"><input type="checkbox"></td>
-                    <td class="attend-col"><input type="checkbox"></td>
-                    <td class="attend-col"><input type="checkbox"></td>
-                    <td class="attend-col"><input type="checkbox"></td>
-                    <td class="attend-col"><input type="checkbox"></td>
-                    <td class="missed-col">0</td>
-                </tr>
-                <tr class="student">
-                    <td class="name-col">Paulrus the Walrus</td>
-                    <td class="attend-col"><input type="checkbox"></td>
-                    <td class="attend-col"><input type="checkbox"></td>
-                    <td class="attend-col"><input type="checkbox"></td>
-                    <td class="attend-col"><input type="checkbox"></td>
-                    <td class="attend-col"><input type="checkbox"></td>
-                    <td class="attend-col"><input type="checkbox"></td>
-                    <td class="attend-col"><input type="checkbox"></td>
-                    <td class="attend-col"><input type="checkbox"></td>
-                    <td class="attend-col"><input type="checkbox"></td>
-                    <td class="attend-col"><input type="checkbox"></td>
-                    <td class="attend-col"><input type="checkbox"></td>
-                    <td class="attend-col"><input type="checkbox"></td>
-                    <td class="missed-col">0</td>
-                </tr>
-                <tr class="student">
-                    <td class="name-col">Gregory the Goat</td>
-                    <td class="attend-col"><input type="checkbox"></td>
-                    <td class="attend-col"><input type="checkbox"></td>
-                    <td class="attend-col"><input type="checkbox"></td>
-                    <td class="attend-col"><input type="checkbox"></td>
-                    <td class="attend-col"><input type="checkbox"></td>
-                    <td class="attend-col"><input type="checkbox"></td>
-                    <td class="attend-col"><input type="checkbox"></td>
-                    <td class="attend-col"><input type="checkbox"></td>
-                    <td class="attend-col"><input type="checkbox"></td>
-                    <td class="attend-col"><input type="checkbox"></td>
-                    <td class="attend-col"><input type="checkbox"></td>
-                    <td class="attend-col"><input type="checkbox"></td>
-                    <td class="missed-col">0</td>
-                </tr>
-                <tr class="student">
-                    <td class="name-col">Adam the Anaconda</td>
-                    <td class="attend-col"><input type="checkbox"></td>
-                    <td class="attend-col"><input type="checkbox"></td>
-                    <td class="attend-col"><input type="checkbox"></td>
-                    <td class="attend-col"><input type="checkbox"></td>
-                    <td class="attend-col"><input type="checkbox"></td>
-                    <td class="attend-col"><input type="checkbox"></td>
-                    <td class="attend-col"><input type="checkbox"></td>
-                    <td class="attend-col"><input type="checkbox"></td>
-                    <td class="attend-col"><input type="checkbox"></td>
-                    <td class="attend-col"><input type="checkbox"></td>
-                    <td class="attend-col"><input type="checkbox"></td>
-                    <td class="attend-col"><input type="checkbox"></td>
-                    <td class="missed-col">0</td>
-                </tr>
-            </tbody>
-        </table>
+	<script type="text/javascript">
+		
+	/* STUDENT APPLICATION */
+	var model = {
+		students : [
+			{
+				name : 'Slappy the Frog',
+				daysMissed : 1
+			},
+			{
+				name : 'Lilly the Lizard',
+				daysMissed : 2
+			},
+			{
+				name : 'Paulrus the Walrus',
+				daysMissed : 3
+			}, 
+			{
+				name : 'Gregory the Goat',
+				daysMissed : 4
+			}, 
+			{
+				name : 'Adam the Anaconda',
+				daysMissed : 5
+			}
+		],
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		currentStudent : null,
 
-		<script type="text/javascript">
-			
-		/* STUDENT APPLICATION */
-		$(function() {
-		    var attendance = JSON.parse(localStorage.attendance),
-		        $allMissed = $('tbody .missed-col'),
-		        $allCheckboxes = $('tbody input');
+		totalDays : 12 
+	}
 
-		    // Count a student's missed days
-		    function countMissing() {
-		        $allMissed.each(function() {
-		            var studentRow = $(this).parent('tr'),
-		                dayChecks = $(studentRow).children('td').children('input'),
-		                numMissed = 0;
+	var octopus = {
+		init : function(){
+			model.currentStudent = model.students[0];
+			view.renderTable();
+			// if (model.currentStudent != null){
+			// 	view.renderStudent();				
+			// }
+			octopus.setMissedDays();
+			view.renderStudents();
+		},
 
-		            dayChecks.each(function() {
-		                if (!$(this).prop('checked')) {
-		                    numMissed++;
-		                }
-		            });
+		getCurrentStudent : function(){
+			return model.currentStudent;
+		},
 
-		            $(this).text(numMissed);
-		        });
-		    }
+		getTotalDays : function(){
+			return model.totalDays;
+		},
 
-		    // Check boxes, based on attendace records
-		    $.each(attendance, function(name, days) {
-		        var studentRow = $('tbody .name-col:contains("' + name + '")').parent('tr'),
-		            dayChecks = $(studentRow).children('.attend-col').children('input');
+		getStudents : function(){
+			return model.students;
+		},
 
-		        dayChecks.each(function(i) {
-		            $(this).prop('checked', days[i]);
-		        });
-		    });
+		setCurrentStudent : function(data){
+			model.currentStudent = data;
+		},
 
-		    // When a checkbox is clicked, update localStorage
-		    $allCheckboxes.on('click', function() {
-		        var studentRows = $('tbody .student'),
-		            newAttendance = {};
+		minusMissed : function(data){
+			model.currentStudent.daysMissed -= 1;
+		},
 
-		        studentRows.each(function() {
-		            var name = $(this).children('.name-col').text(),
-		                $allCheckboxes = $(this).children('td').children('input');
+		plusMissed : function(){
+			model.currentStudent.daysMissed += 1;
+		},
 
-		            newAttendance[name] = [];
+		setMissedDays : function(){
+			for (var i = 0; i < model.students.length; i++){
+				model.students[i].daysMissed = model.totalDays;
+			}
+		}
 
-		            $allCheckboxes.each(function() {
-		                newAttendance[name].push($(this).prop('checked'));
-		            });
-		        });
+	}
 
-		        countMissing();
-		        localStorage.attendance = JSON.stringify(newAttendance);
-		    });
+	var view = {
 
-		    countMissing();
-		}());
+		init : function(){
+		},
 
-		</script>
+		renderStudents : function(){
+			for (var i = 0; i < octopus.getStudents().length; i++){
+				data = octopus.getStudents()[i];
+				octopus.setCurrentStudent(data);
+				alert(i);
+				view.renderStudent(data, i);
+			}
+		},
+
+		renderStudent : function(data, index){
+			alert(data.name);
+			row = document.getElementById(index);
+			nameData = document.createElement('td');
+			nameData.class = 'name-col';
+			nameData.innerHTML = data.name
+			row.appendChild(nameData);
+
+			for (var i = 0; i < octopus.getTotalDays(); i++){
+
+				checkData = document.createElement('td');
+				checkData.class = 'attend-col';
+
+				checkbox = document.createElement('input');
+				checkbox.type = 'checkbox';
+				// checkbox.addEventListener('click', (function(e) {
+				// 	if (e.target.checked){ 
+				// 		octopus.minusMissed(data);
+				// 		alert(octopus.getCurrentStudent().name);
+				// 	} 
+				// 	else { 
+				// 		octopus.plusMissed();
+				// 	} 
+
+				// }));
+
+				checkData.appendChild(checkbox);
+				row.appendChild(checkData);
+			}
+
+			missed = document.createElement('td');
+			missed.class = 'missed-col';
+			missed.innerHTML = data.daysMissed;
+			row.appendChild(missed);
+		},
+
+		renderTable : function(){
+			table = document.createElement('table');
+
+			head = document.createElement('thead');
+
+			headRow = document.createElement('tr');
+			nameData = document.createElement('th');
+			nameData.class = 'name-col';
+			nameData.innerHTML = 'Student Name';
+			headRow.appendChild(nameData);
+
+			for (var i = 0; i < octopus.getTotalDays(); i++){
+				data = document.createElement('th');
+				data.innerHTML = i + 1;
+				headRow.appendChild(data);
+			}
+
+			missedData = document.createElement('th');
+			missedData.class = 'missed-col';
+			missedData.innerHTML = 'Days Missed';
+
+			headRow.appendChild(missedData);
+
+			head.appendChild(headRow);
+			table.appendChild(head);
+
+			tbody = document.createElement('tbody');
+
+			for (var i = 0; i < octopus.getStudents().length; i++){
+				row = document.createElement('tr');
+				row.id = i;
+				row.class = 'student';
+				tbody.appendChild(row);
+			}
+
+			table.appendChild(tbody);
+
+			body = document.getElementById('body');
+			body.appendChild(table);
+		}
+
+	}
+
+	octopus.init();
+
+
+	</script>
 </body>
 
 </html>
